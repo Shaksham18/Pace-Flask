@@ -72,4 +72,4 @@ if __name__ == '__main__':
                 resp = update_coin_data(False)
             insert_flag = False
         print(resp)
-        time.sleep(5)  # Schedule Cron Job on Server to scrap intead on while loop
+        time.sleep(5)  # Schedule Cron Job on Server to scrap instead of while loop
