@@ -71,6 +71,8 @@ if __name__ == '__main__':
         if insert_flag:
             if 'err_detail' in resp and 'duplicate key value violates unique constraint' in resp['err_detail']:
                 resp = update_coin_data(False, driver)
+            elif 'err_detail' in resp:
+                break
             insert_flag = False
         print(resp)
         time.sleep(5)  # Schedule Cron Job on Server to scrap instead of while loop
