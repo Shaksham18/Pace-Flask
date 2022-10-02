@@ -15,7 +15,8 @@ class CoinHandler:
     def get_all_coin_data(self):
         recs = self.db_session.query(TableCoin).order_by(TableCoin.id).all()
         ret_data = [get_data_from_model_obj(rec) for rec in recs]
-
+        for rec in ret_data:
+            rec['volume24h'] = rec['volume24h'].split(' | ')
         return {"data": ret_data}
 
     def bulk_update_data(self, data):

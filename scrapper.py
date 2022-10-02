@@ -44,7 +44,7 @@ def parse_table_content(html_data):
                 '24h': td_data[3].getText(),
                 '7d': td_data[4].getText(),
                 'market_cap': td_data[5].findAll('span', class_="iosgXe")[0].getText(),
-                'volume24h': td_data[6].getText(),
+                'volume24h': td_data[6].findAll('p', class_="fVSMmK")[0].getText() + " | "+td_data[6].findAll('p', class_="hueJdC")[0].getText(),
                 'supply': td_data[7].getText(),
             }
             row_data.append(temp_data)
