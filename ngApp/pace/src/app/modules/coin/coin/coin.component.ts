@@ -17,7 +17,7 @@ export class CoinComponent implements OnInit,OnDestroy {
     this.get_coin_data()
     this.interval = setInterval(() => {
       this.get_coin_data()
-    },10000)
+    },3000)
   }
 
   ngOnDestroy(): void {
