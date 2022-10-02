@@ -1,0 +1,43 @@
+<div class="container-fluid py-4  d-flex justify-content-center">
+    <div class="card" style="height: 90vh;width: 90vw; overflow: auto;position: relative;">
+        <table class="table table-hover table-bordered">
+            <colgroup>
+                <col>
+                <col style="width:250px;min-width:auto;max-width:auto">
+                <col style="width:250px;min-width:auto;max-width:auto">
+                <col style="width:100px;min-width:auto;max-width:auto">
+                <col style="width:100px;min-width:auto;max-width:auto">
+                <col style="width:100px;min-width:auto;max-width:auto">
+                <col style="width:220px;min-width:auto;max-width:auto">
+                <col style="width:220px;min-width:auto;max-width:auto">
+                <col style="width:220px;min-width:auto;max-width:auto">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Coin</th>
+                    <th>Price</th>
+                    <th>1h %</th>
+                    <th>24h %</th>
+                    <th>7d %</th>
+                    <th>Market Cap</th>
+                    <th>Volume</th>
+                    <th>Current Supply</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of coins;let index=index">
+                    <td>{{index+1}}</td>
+                    <td>{{row['name']}}</td>
+                    <td>{{row['price']}}</td>
+                    <td>{{row['1h']}}</td>
+                    <td>{{row['24h']}}</td>  
+                    <td>{{row['7d']}}</td>
+                    <td>{{row['market_cap']}}</td>
+                    <td>{{row['volume24h'][0]}} <br> {{row['volume24h'][1]}}</td>
+                    <td>{{row['supply']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
