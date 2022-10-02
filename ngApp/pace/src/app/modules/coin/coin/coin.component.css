@@ -19,3 +19,7 @@ background: #888;
 ::-webkit-scrollbar-thumb:hover {
 background: #555; 
 }
+
+.text-right{
+  text-align: right ;
+}
