@@ -1,4 +1,8 @@
 # Pace
+> - Performing scrapping crypto data from coinmarketcap.com  - With Python / Selenium / BS4
+> - Storing Data in Database using APIs -  Python / Flask / SQLAlchemy / Postgresql
+> - Fetching & Showing Crypto Data in Angular Based Front-end Webpage
+
 
 ### For NgApp (Angular 14 used)
 
