@@ -8,7 +8,7 @@ class DbConn:
         cnf = {'user': 'admin', 'password': 'postgres', 'host': 'localhost:5432', 'db': 'pace'}
         con_string = "postgresql+psycopg2://{0}:{1}@{2}/{3}".format(cnf['user'], cnf['password'],
                                                                     cnf['host'], cnf['db'])
-        self._db_engine = create_engine(con_string, echo=False)
+        self._db_engine = create_engine(con_string, echo=False, pool_size=20, max_overflow=0)
         self._metadata = {}
 
     def get_db_engine(self):
