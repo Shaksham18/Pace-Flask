@@ -26,7 +26,7 @@ class CoinHandler:
             return {"msg": "Data Updated Successfully"}
         except Exception as e:
             self.db_session.rollback()
-            return {"msg": "Data Format/Duplicate Issue Found", "err_detail": str(e)}
+            return {"msg": "Data Format Issue Found", "err_detail": str(e)}
 
     def bulk_insert_data(self, data):
         try:
@@ -35,5 +35,5 @@ class CoinHandler:
             return {"msg": "Data Inserted Successfully"}
         except Exception as e:
             self.db_session.rollback()
-            return {"msg": "Data Format Issue Found", "err_detail": str(e)}
+            return {"msg": "Data Format/Duplicate Issue Found", "err_detail": str(e)}
 
