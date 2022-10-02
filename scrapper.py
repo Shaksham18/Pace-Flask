@@ -10,11 +10,8 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 
 
-def get_table_content():
-    options = Options()
-    options.headless = True
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-    driver.get('https://coinmarketcap.com/')
+def get_table_content(driver):
+    driver.refresh()
     # Since Height of CoinMarketPlace is 10k+ and data loads on scroll - we are using scrollBy 1000 to complete
     # refreshed data
     javaScript = "window.scrollBy(0, 1000);"
@@ -23,7 +20,7 @@ def get_table_content():
 
     table = driver.find_element(By.CLASS_NAME, 'bFzXgL')
     table_ihtml = table.get_attribute('innerHTML')
-    driver.quit()
+    # driver.quit()
     return table_ihtml
 
 
@@ -54,22 +51,26 @@ def parse_table_content(html_data):
     return row_data
 
 
-def update_coin_data(insert_flag):
+def update_coin_data(insert_flag, driver):
     _url = 'http://localhost:5000/coin/insert' if insert_flag else 'http://localhost:5000/coin/update'
     payload = {
-        "data": parse_table_content(get_table_content())
+        "data": parse_table_content(get_table_content(driver))
     }
     x = requests.post(_url, json=payload)
     return json.loads(x.text)
 
 
 if __name__ == '__main__':
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    driver.get('https://coinmarketcap.com/')
     insert_flag = True  # this flag can be set in env so that we dont insert everytime when we restart scrapper
     while True:
-        resp = update_coin_data(insert_flag)
+        resp = update_coin_data(insert_flag, driver)
         if insert_flag:
             if 'err_detail' in resp and 'duplicate key value violates unique constraint' in resp['err_detail']:
-                resp = update_coin_data(False)
+                resp = update_coin_data(False, driver)
             insert_flag = False
         print(resp)
         time.sleep(5)  # Schedule Cron Job on Server to scrap instead of while loop
